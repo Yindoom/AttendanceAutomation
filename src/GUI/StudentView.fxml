@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="239.0" prefWidth="277.0" stylesheets="@newCascadeStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StudentViewController">
+   <children>
+      <Label fx:id="fname" layoutX="14.0" layoutY="14.0" styleClass="name" stylesheets="@newCascadeStyleSheet.css" text="Fname" />
+      <Label fx:id="lname" layoutX="86.0" layoutY="14.0" styleClass="name" stylesheets="@newCascadeStyleSheet.css" text="Lname" />
+      <Label fx:id="classes" layoutX="164.0" layoutY="14.0" styleClass="name" stylesheets="@newCascadeStyleSheet.css" text="Class" />
+      <JFXButton layoutX="72.0" layoutY="76.0" onAction="#clickAttend" prefHeight="54.0" prefWidth="101.0" styleClass="buttons" text="Attend" />
+      <JFXButton layoutX="154.0" layoutY="179.0" onAction="#clickAttendence" prefHeight="54.0" prefWidth="115.0" styleClass="buttons" text="Attendence" />
+   </children>
+</AnchorPane>
