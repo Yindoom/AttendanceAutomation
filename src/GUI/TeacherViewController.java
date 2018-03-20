@@ -6,7 +6,6 @@
 package GUI;
 
 import BE.Account;
-import GUI.MainWindowController;
 import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
 import java.net.URL;

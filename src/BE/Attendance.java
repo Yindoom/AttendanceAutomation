@@ -16,14 +16,14 @@ import javafx.beans.property.StringProperty;
  *
  * @author ZeXVex
  */
-public class Dates {
+public class Attendance {
 
     @Override
     public String toString() {
         return "Day:" + Day.getValue() + "\t" + "Month:" + month.getValue() + "\t" + "Year:" + year.getValue() + "Presence:" + getString();
     }
 
-    public Dates(int day, int month, int years, boolean present) {
+    public Attendance(int day, int month, int years, boolean present) {
         this.Day.set(day);
         this.month.set(month);
         this.year.set(years);

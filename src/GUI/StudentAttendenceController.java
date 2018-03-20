@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BE.Dates;
+import BE.Attendance;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
@@ -36,7 +36,7 @@ public class StudentAttendenceController implements Initializable {
     @FXML
     private Label classes;
     @FXML
-    private JFXListView<Dates> lstAttendence;
+    private JFXListView<Attendance> lstAttendence;
     private String prompt = "Set absence";
 
     /**
@@ -44,37 +44,37 @@ public class StudentAttendenceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Dates d1 = new Dates(1, 01, 2018, true);
-        Dates d2 = new Dates(2, 01, 2018, true);
-        Dates d3 = new Dates(3, 01, 2018, true);
-        Dates d4 = new Dates(4, 01, 2018, true);
-        Dates d5 = new Dates(5, 01, 2018, true);
-        Dates d6 = new Dates(6, 01, 2018, true);
-        Dates d7 = new Dates(7, 01, 2018, true);
-        Dates d8 = new Dates(8, 01, 2018, true);
-        Dates d9 = new Dates(9, 01, 2018, true);
-        Dates d10 = new Dates(10, 01, 2018, true);
-        Dates d11 = new Dates(11, 01, 2018, true);
-        Dates d12 = new Dates(12, 01, 2018, true);
-        Dates d13 = new Dates(13, 01, 2018, true);
-        Dates d14 = new Dates(14, 01, 2018, true);
-        Dates d15 = new Dates(15, 01, 2018, true);
-        Dates d16 = new Dates(16, 01, 2018, true);
-        Dates d17 = new Dates(17, 01, 2018, true);
-        Dates d18 = new Dates(18, 01, 2018, true);
-        Dates d19 = new Dates(19, 01, 2018, true);
-        Dates d20 = new Dates(20, 01, 2018, true);
-        Dates d21 = new Dates(21, 01, 2018, true);
-        Dates d22 = new Dates(22, 01, 2018, true);
-        Dates d23 = new Dates(23, 01, 2018, true);
-        Dates d24 = new Dates(24, 01, 2018, true);
-        Dates d25 = new Dates(25, 01, 2018, true);
-        Dates d26 = new Dates(26, 01, 2018, true);
-        Dates d27 = new Dates(27, 01, 2018, true);
-        Dates d28 = new Dates(28, 01, 2018, true);
-        Dates d29 = new Dates(29, 01, 2018, true);
-        Dates d30 = new Dates(30, 01, 2018, true);
-        Dates d31 = new Dates(31, 01, 2018, true);
+        Attendance d1 = new Attendance(1, 01, 2018, true);
+        Attendance d2 = new Attendance(2, 01, 2018, true);
+        Attendance d3 = new Attendance(3, 01, 2018, true);
+        Attendance d4 = new Attendance(4, 01, 2018, true);
+        Attendance d5 = new Attendance(5, 01, 2018, true);
+        Attendance d6 = new Attendance(6, 01, 2018, true);
+        Attendance d7 = new Attendance(7, 01, 2018, true);
+        Attendance d8 = new Attendance(8, 01, 2018, true);
+        Attendance d9 = new Attendance(9, 01, 2018, true);
+        Attendance d10 = new Attendance(10, 01, 2018, true);
+        Attendance d11 = new Attendance(11, 01, 2018, true);
+        Attendance d12 = new Attendance(12, 01, 2018, true);
+        Attendance d13 = new Attendance(13, 01, 2018, true);
+        Attendance d14 = new Attendance(14, 01, 2018, true);
+        Attendance d15 = new Attendance(15, 01, 2018, true);
+        Attendance d16 = new Attendance(16, 01, 2018, true);
+        Attendance d17 = new Attendance(17, 01, 2018, true);
+        Attendance d18 = new Attendance(18, 01, 2018, true);
+        Attendance d19 = new Attendance(19, 01, 2018, true);
+        Attendance d20 = new Attendance(20, 01, 2018, true);
+        Attendance d21 = new Attendance(21, 01, 2018, true);
+        Attendance d22 = new Attendance(22, 01, 2018, true);
+        Attendance d23 = new Attendance(23, 01, 2018, true);
+        Attendance d24 = new Attendance(24, 01, 2018, true);
+        Attendance d25 = new Attendance(25, 01, 2018, true);
+        Attendance d26 = new Attendance(26, 01, 2018, true);
+        Attendance d27 = new Attendance(27, 01, 2018, true);
+        Attendance d28 = new Attendance(28, 01, 2018, true);
+        Attendance d29 = new Attendance(29, 01, 2018, true);
+        Attendance d30 = new Attendance(30, 01, 2018, true);
+        Attendance d31 = new Attendance(31, 01, 2018, true);
         lstAttendence.getItems().add(d1);
         lstAttendence.getItems().add(d2);
         lstAttendence.getItems().add(d3);
@@ -115,7 +115,7 @@ public class StudentAttendenceController implements Initializable {
     private void chooseAbsence(ActionEvent event) {
         boolean present;
         if(absenceBox.getValue() != null) {
-        Dates selectedDay = lstAttendence.getSelectionModel().getSelectedItem();
+        Attendance selectedDay = lstAttendence.getSelectionModel().getSelectedItem();
         if(absenceBox.getValue() == "Present")
             present = true;
         else
