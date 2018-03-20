@@ -5,7 +5,6 @@
  */
 package BE;
 
-import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,15 +21,13 @@ public class Student {
     private final StringProperty password = new SimpleStringProperty();
     private final StringProperty fname = new SimpleStringProperty();
     private final StringProperty lname = new SimpleStringProperty();
-    private final StringProperty classes = new SimpleStringProperty();
     
     @Override
     public String toString() {
         return username.getValue() + "\t"
                 + password.getValue() + "\t"
                 + fname.getValue() + "\t"
-                + lname.getValue() + "\t"
-                + classes.getValue();
+                + lname.getValue();
     }
     
     public Student(String username, String password, String fname, String lname, String classes) {
@@ -38,31 +35,14 @@ public class Student {
         this.password.set(password);
         this.fname.set(fname);
         this.lname.set(lname);
-        this.classes.set(classes);
     }
     
     public int getId() {
         return id.get();
     }
     
-    public void getId(int value) {
-        id.set(value);
-    }
-    
     public IntegerProperty idProperty() {
         return id;
-    }
-    
-    public String getClasses() {
-        return classes.get();
-    }
-    
-    public void setClasses(String value) {
-        classes.set(value);
-    }
-    
-    public StringProperty classesProperty() {
-        return classes;
     }
     
     public String getLname() {

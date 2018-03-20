@@ -7,8 +7,10 @@ package BE;
 
 import java.time.LocalDate;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
@@ -16,6 +18,10 @@ import javafx.beans.property.SimpleObjectProperty;
  * @author ZeXVex
  */
 public class Attendance {
+
+    public Attendance() {
+        
+    }
 
     @Override
     public String toString() {
@@ -28,6 +34,20 @@ public class Attendance {
         
     private final BooleanProperty present = new SimpleBooleanProperty();
     private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
+    private final IntegerProperty studentId = new SimpleIntegerProperty();
+
+    public int getStudentId() {
+        return studentId.get();
+    }
+
+    public void setStudentId(int value) {
+        studentId.set(value);
+    }
+
+    public IntegerProperty studentIdProperty() {
+        return studentId;
+    }
+    
 
     public LocalDate getDate() {
         return date.get();

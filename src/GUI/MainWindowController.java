@@ -33,9 +33,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private JFXTextField username;
 
-    Student student1 = new Student("student", "12345", "nicolai", "work", "CS2017");
-    Student teacher1 = new Student("teacher", "teacher", "Pasqual", "Caudrier", "SEN");
-        
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -43,22 +41,22 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException {
-        if(student1.getPassword().equals(password.getText()) && student1.getUsername().equals(username.getText())) 
-        openStudent(student1.getName(), student1.getLname(), student1.getClasses(), student1.getId());
-        else if(teacher1.getPassword().equals(password.getText()) && teacher1.getUsername().equals(username.getText()))
-        openTeacher(teacher1.getName(), teacher1.getLname());
-            
+//        if() 
+//        openStudent();
+//        else if()
+//        openTeacher();
+//            
         
     }
     
-    private void openStudent(String name, String lName, String Class, int id) throws IOException {
+    private void openStudent(String name, String lName,int id) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
 
         Parent root = fxLoader.load();
         StudentViewController stc = fxLoader.getController();
-        stc.setLabels(name, lName, Class, id);
+        stc.setLabels(name, lName, id);
         stc.setModel(model);
 
         Scene scene = new Scene(root);

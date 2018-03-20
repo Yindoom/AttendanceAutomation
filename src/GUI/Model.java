@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import BLL.BLLController;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -12,9 +14,10 @@ import java.time.LocalDate;
  * @author Yindo
  */
 public class Model {
+    BLLController bll = new BLLController();
 
-    void attend(LocalDate now) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void attend(LocalDate now, int id) throws SQLException {
+        bll.attend(now, id);
     }
     
 }

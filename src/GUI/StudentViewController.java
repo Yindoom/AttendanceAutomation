@@ -8,6 +8,7 @@ package GUI;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -48,17 +49,17 @@ public class StudentViewController implements Initializable {
     }
 
 
-    public void setLabels(String name, String lName, String Class, int id) {
+    public void setLabels(String name, String lName, int id) {
         fname.setText(name);
         lname.setText(lName);
-        classes.setText(Class);
         this.studentId = id;
     }
 
     @FXML
-    private void clickAttend(ActionEvent event) {
+    private void clickAttend(ActionEvent event) throws SQLException {
+        studentId = 1;
         LocalDate date = LocalDate.now();
-        model.attend(date);
+        model.attend(date, studentId);
         System.out.println("attended");
         //TODO
     }

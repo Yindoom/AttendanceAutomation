@@ -5,10 +5,21 @@
  */
 package BLL;
 
+import BE.Attendance;
+import DAL.DALController;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 /**
  *
  * @author ZeXVex
  */
 public class BLLController {
+    DALController dal = new DALController();
+
+    public void attend(LocalDate now, int id) throws SQLException {
+        java.sql.Date sqlDate = java.sql.Date.valueOf(now);
+        dal.attend(sqlDate, id);
+    }
     
 }
