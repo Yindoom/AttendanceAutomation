@@ -51,14 +51,14 @@ public class MainWindowController implements Initializable {
         
     }
     
-    private void openStudent(String name, String lName, String Class) throws IOException {
+    private void openStudent(String name, String lName, String Class, int id) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
 
         Parent root = fxLoader.load();
         StudentViewController stc = fxLoader.getController();
-        stc.setLabels(name, lName, Class);
+        stc.setLabels(name, lName, Class, id);
         stc.setModel(model);
 
         Scene scene = new Scene(root);

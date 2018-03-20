@@ -48,7 +48,7 @@ public class StudentViewController implements Initializable {
     }
 
 
-    public void setLabels(String name, String lName, String Class) {
+    public void setLabels(String name, String lName, String Class, int id) {
         fname.setText(name);
         lname.setText(lName);
         classes.setText(Class);
