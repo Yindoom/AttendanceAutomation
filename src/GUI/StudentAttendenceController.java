@@ -57,7 +57,7 @@ public class StudentAttendenceController implements Initializable {
         else
             present = false;
         selectedDay.setPresent(present);
-        //lstAttendence.refresh();
+        lstAttendence.refresh();
         System.out.println(absenceBox.getValue());
         }
         absenceBox.getSelectionModel().clearSelection();
