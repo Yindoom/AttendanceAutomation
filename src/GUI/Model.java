@@ -5,10 +5,16 @@
  */
 package GUI;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Yindo
  */
 public class Model {
+
+    void attend(LocalDate now) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

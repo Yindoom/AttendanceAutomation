@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BE.Account;
+import BE.Student;
 import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
 import java.net.URL;
@@ -27,21 +27,21 @@ import javafx.stage.Stage;
  */
 public class TeacherViewController implements Initializable {
 
-    MainWindowController mwc = new MainWindowController();
+    Model model;
 
     @FXML
     private Label fname;
     @FXML
     private Label lname;
     @FXML
-    private JFXListView<Account> lstStudents;
+    private JFXListView<Student> lstStudents;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Account student1 = new Account("", "", "nicolai", "work", "CS2017");
+        Student student1 = new Student("", "", "nicolai", "work", "CS2017");
         lstStudents.getItems().add(student1);
     }
 
@@ -54,7 +54,7 @@ public class TeacherViewController implements Initializable {
         Parent root = fxLoader.load();
         TeachersStudentViewController stc = fxLoader.getController();
 
-        Account selectedAccount
+        Student selectedAccount
                 = lstStudents.getSelectionModel().getSelectedItem();
         stc.setAccount(selectedAccount);
 
@@ -67,5 +67,9 @@ public class TeacherViewController implements Initializable {
     public void setLabels(String name, String lName) {
         fname.setText(name);
         lname.setText(lName);
+    }
+
+    void setModel(Model model) {
+        this.model = model;
     }
 }

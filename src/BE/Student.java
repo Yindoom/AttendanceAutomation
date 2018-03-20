@@ -15,11 +15,11 @@ import javafx.beans.property.StringProperty;
  *
  * @author ZeXVex
  */
-public class Account {
+public class Student {
     
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty username = new SimpleStringProperty();
-    private final StringProperty passeword = new SimpleStringProperty();
+    private final StringProperty password = new SimpleStringProperty();
     private final StringProperty fname = new SimpleStringProperty();
     private final StringProperty lname = new SimpleStringProperty();
     private final StringProperty classes = new SimpleStringProperty();
@@ -27,15 +27,15 @@ public class Account {
     @Override
     public String toString() {
         return username.getValue() + "\t"
-                + passeword.getValue() + "\t"
+                + password.getValue() + "\t"
                 + fname.getValue() + "\t"
                 + lname.getValue() + "\t"
                 + classes.getValue();
     }
     
-    public Account(String username, String passeword, String fname, String lname, String classes) {
+    public Student(String username, String password, String fname, String lname, String classes) {
         this.username.set(username);
-        this.passeword.set(passeword);
+        this.password.set(password);
         this.fname.set(fname);
         this.lname.set(lname);
         this.classes.set(classes);
@@ -89,16 +89,16 @@ public class Account {
         return fname;
     }
     
-    public String getPasseword() {
-        return passeword.get();
+    public String getPassword() {
+        return password.get();
     }
     
-    public void setPasseword(String value) {
-        passeword.set(value);
+    public void setPassword(String value) {
+        password.set(value);
     }
     
-    public StringProperty PassewordProperty() {
-        return passeword;
+    public StringProperty PasswordProperty() {
+        return password;
     }
     
     public String getUsername() {

@@ -8,6 +8,7 @@ package GUI;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,10 @@ import javafx.stage.Stage;
  * @author ZeXVex
  */
 public class StudentViewController implements Initializable {
-
+    
+    Model model;
+    int studentId;
+    
     @FXML
     private Label fname;
     @FXML
@@ -48,22 +52,29 @@ public class StudentViewController implements Initializable {
         fname.setText(name);
         lname.setText(lName);
         classes.setText(Class);
+        this.studentId = id;
     }
 
     @FXML
     private void clickAttend(ActionEvent event) {
+        LocalDate date = LocalDate.now();
+        model.attend(date);
         System.out.println("attended");
         //TODO
     }
 
     @FXML
     private void clickAttendence(ActionEvent event) throws IOException {
-            Stage primaryStage = new Stage();
-            primaryStage.initModality(Modality.WINDOW_MODAL);
-            Parent root = FXMLLoader.load(getClass().getResource("StudentAttendence.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        Parent root = FXMLLoader.load(getClass().getResource("StudentAttendence.fxml"));
 
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    void setModel(Model model) {
+        this.model = model;
     }
 }

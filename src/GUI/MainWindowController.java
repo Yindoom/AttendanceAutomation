@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BE.Account;
+import BE.Student;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -27,13 +27,14 @@ import javafx.stage.Stage;
  */
 public class MainWindowController implements Initializable {
 
+    Model model = new Model();
     @FXML
     private JFXPasswordField password;
     @FXML
     private JFXTextField username;
 
-    Account student1 = new Account("student", "12345", "nicolai", "work", "CS2017");
-    Account teacher1 = new Account("teacher", "teacher", "Pasqual", "Caudrier", "SEN");
+    Student student1 = new Student("student", "12345", "nicolai", "work", "CS2017");
+    Student teacher1 = new Student("teacher", "teacher", "Pasqual", "Caudrier", "SEN");
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,9 +43,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException {
-        if(student1.getPasseword().equals(password.getText()) && student1.getUsername().equals(username.getText())) 
-        openStudent(student1.getName(), student1.getLname(), student1.getClasses());
-        else if(teacher1.getPasseword().equals(password.getText()) && teacher1.getUsername().equals(username.getText()))
+        if(student1.getPassword().equals(password.getText()) && student1.getUsername().equals(username.getText())) 
+        openStudent(student1.getName(), student1.getLname(), student1.getClasses(), student1.getId());
+        else if(teacher1.getPassword().equals(password.getText()) && teacher1.getUsername().equals(username.getText()))
         openTeacher(teacher1.getName(), teacher1.getLname());
             
         
@@ -58,6 +59,7 @@ public class MainWindowController implements Initializable {
         Parent root = fxLoader.load();
         StudentViewController stc = fxLoader.getController();
         stc.setLabels(name, lName, Class);
+        stc.setModel(model);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -71,8 +73,9 @@ public class MainWindowController implements Initializable {
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("TeacherView.fxml"));
 
         Parent root = fxLoader.load();
-        TeacherViewController stc = fxLoader.getController();
-        stc.setLabels(name, lname);
+        TeacherViewController tvc = fxLoader.getController();
+        tvc.setLabels(name, lname);
+        tvc.setModel(model);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

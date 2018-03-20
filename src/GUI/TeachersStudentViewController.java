@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BE.Account;
+import BE.Student;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 
 public class TeachersStudentViewController implements Initializable {
     
-    private JFXListView<Account> lstAttendence;
+    private JFXListView<Student> lstAttendence;
 
     /**
      * Initializes the controller class.
@@ -23,7 +23,7 @@ public class TeachersStudentViewController implements Initializable {
         // TODO
     }    
 
-    public void setAccount(Account selectedAccount) {
+    public void setAccount(Student selectedAccount) {
         lstAttendence.getItems().add(selectedAccount);
         //TODO
         
