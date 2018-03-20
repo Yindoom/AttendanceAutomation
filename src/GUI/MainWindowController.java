@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BE.Student;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -41,21 +40,24 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException {
-//        if() 
-//        openStudent();
-//        else if()
-//        openTeacher();
-//            
+        if(username.getText().equals("student")) 
+        openStudent();
+        else if(username.getText().equals("teacher"))
+        openTeacher();
+            
         
     }
     
-    private void openStudent(String name, String lName,int id) throws IOException {
+    private void openStudent() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
 
         Parent root = fxLoader.load();
         StudentViewController stc = fxLoader.getController();
+        String name = "fuck";
+        String lName = "you";
+        int id = 1;
         stc.setLabels(name, lName, id);
         stc.setModel(model);
 
@@ -65,13 +67,16 @@ public class MainWindowController implements Initializable {
         
     }
 
-    private void openTeacher(String name, String lname) throws IOException {
+    private void openTeacher() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("TeacherView.fxml"));
 
         Parent root = fxLoader.load();
         TeacherViewController tvc = fxLoader.getController();
+        String name = "fuck";
+        String lname = "you";
+
         tvc.setLabels(name, lname);
         tvc.setModel(model);
 
