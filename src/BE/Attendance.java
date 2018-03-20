@@ -5,12 +5,11 @@
  */
 package BE;
 
-import com.jfoenix.controls.JFXComboBox;
+import java.time.LocalDate;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -20,20 +19,28 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return "Day:" + Day.getValue() + "\t" + "Month:" + month.getValue() + "\t" + "Year:" + year.getValue() + "Presence:" + getString();
+        return "Presence:" + getString();
     }
 
-    public Attendance(int day, int month, int years, boolean present) {
-        this.Day.set(day);
-        this.month.set(month);
-        this.year.set(years);
+    public Attendance(boolean present) {
         this.present.set(present);
     }
-    
-    private final IntegerProperty Day = new SimpleIntegerProperty();
-    private final IntegerProperty month = new SimpleIntegerProperty();
-    private final IntegerProperty year = new SimpleIntegerProperty();
+        
     private final BooleanProperty present = new SimpleBooleanProperty();
+    private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
+
+    public LocalDate getDate() {
+        return date.get();
+    }
+
+    public void setDate(LocalDate value) {
+        date.set(value);
+    }
+
+    public ObjectProperty dateProperty() {
+        return date;
+    }
+    
 
     public boolean isPresent() {
         return present.get();
@@ -47,42 +54,7 @@ public class Attendance {
         return present;
     }
 
-    public int getYear() {
-        return year.get();
-    }
 
-    public void setYear(int value) {
-        year.set(value);
-    }
-
-    public IntegerProperty yearProperty() {
-        return year;
-    }
-
-    public int getMonth() {
-        return month.get();
-    }
-
-    public void setMonth(int value) {
-        month.set(value);
-    }
-
-    public IntegerProperty monthProperty() {
-        return month;
-    }
-
-    public int getDay() {
-        return Day.get();
-    }
-
-    public void setDay(int value) {
-        Day.set(value);
-    }
-
-    public IntegerProperty DayProperty() {
-        return Day;
-    }
-    
     public String getString() {
         String presentString;
         if(present.getValue() == true)
