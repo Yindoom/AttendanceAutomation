@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.Attendance;
+import BE.Student;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -44,10 +45,13 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException {
-        if(username.getText().equals("student")) 
-        openStudent();
+        for (Student student : model.studentLogin()) { 
+        if(username.getText() == 
+            openStudent();
         else if(username.getText().equals("teacher"))
         openTeacher();
+            
+        }
             
         
     }
