@@ -33,8 +33,22 @@ public class Attendance {
     }
         
     private final BooleanProperty present = new SimpleBooleanProperty();
-    private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
+    private final ObjectProperty<LocalDate> localDate = new SimpleObjectProperty<>();
     private final IntegerProperty studentId = new SimpleIntegerProperty();
+    private final ObjectProperty<java.sql.Date> sqlDate = new SimpleObjectProperty<>();
+
+    public java.sql.Date getSqlDate() {
+        return sqlDate.get();
+    }
+
+    public void setSqlDate(java.sql.Date value) {
+        sqlDate.set(value);
+    }
+
+    public ObjectProperty sqlDateProperty() {
+        return sqlDate;
+    }
+    
 
     public int getStudentId() {
         return studentId.get();
@@ -50,15 +64,15 @@ public class Attendance {
     
 
     public LocalDate getDate() {
-        return date.get();
+        return localDate.get();
     }
 
     public void setDate(LocalDate value) {
-        date.set(value);
+        localDate.set(value);
     }
 
     public ObjectProperty dateProperty() {
-        return date;
+        return localDate;
     }
     
 
@@ -73,7 +87,6 @@ public class Attendance {
     public BooleanProperty presentProperty() {
         return present;
     }
-
 
     public String getString() {
         String presentString;

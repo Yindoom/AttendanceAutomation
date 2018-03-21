@@ -5,6 +5,8 @@
  */
 package DAL;
 
+import BE.Attendance;
+import BLL.BLLController;
 import BE.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
@@ -24,24 +26,30 @@ import java.util.logging.Logger;
  */
 public class DALController {
     
-        private ConnectionManager cm = new ConnectionManager();
+    private ConnectionManager cm = new ConnectionManager();
+    
 
-       public void attend(Date sqlDate, int id) throws SQLException {
-        try (Connection con = cm.getConnection()) {
+    public void attend(Attendance attend) {
+         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO Attendance"
-                    + "(SId, Date, Present)"
+                    + "(SId, Date, Present) "
                     + "VALUES(?,?,?)";
             PreparedStatement pstmt
                     = con.prepareStatement(
                             sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, id);
-            pstmt.setDate(2, sqlDate);
-            pstmt.setBoolean(id, true);
-            
+            pstmt.setInt(1, attend.getStudentId());
+            pstmt.setDate(2, attend.getSqlDate());
+            pstmt.setBoolean(3, attend.isPresent());
+
             int affected = pstmt.executeUpdate();
-            if(affected<1)
-                throw new SQLException("Eat a dick");
+            if (affected<1)
+                throw new SQLException("fuck you");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
     }
 
@@ -67,4 +75,27 @@ public class DALController {
         return studentLogin;
     }
     
+    public List<Attendance> getStudentAttendance()  {
+        List<Attendance> attendances
+                = new ArrayList();
+    
+     try (Connection con = cm.getConnection()) {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM Attendance");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Attendance attendance = new Attendance();
+                attendance.setPresent(rs.getBoolean("Present"));
+                attendance.setStudentId(rs.getInt("SId"));
+                attendance.setSqlDate(rs.getDate("Date"));
+
+                attendances.add(attendance);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        return attendances;
+    }
 }

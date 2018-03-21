@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.Attendance;
 import BE.Student;
 import BLL.BLLController;
 import java.sql.SQLException;
@@ -26,4 +27,7 @@ public class Model {
         return bll.studentLogin();
     }
     
+    public List<Attendance> getStudentAttendance()  {
+        return bll.getStudentAttendance();
+    }
 }

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.Attendance;
 import BE.Student;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -36,6 +37,9 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        for (Attendance attendance : model.getStudentAttendance()) {
+            System.out.println(attendance.getDate());   
+        }
         
     }
 
