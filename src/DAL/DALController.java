@@ -60,7 +60,7 @@ public class DALController {
         
         try (Connection con = cm.getConnection()){
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM STUDENT");
+                    = con.prepareStatement("SELECT * FROM Students");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Student student = new Student();
@@ -82,7 +82,7 @@ public class DALController {
         
         try (Connection con = cm.getConnection()){
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM STUDENT");
+                    = con.prepareStatement("SELECT * FROM Teacher");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Teacher teacher = new Teacher();
