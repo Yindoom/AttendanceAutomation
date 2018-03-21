@@ -9,6 +9,7 @@ import BE.Student;
 import BLL.BLLController;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Model {
         bll.attend(now, id);
     }
 
-    public Student studentLogin() throws SQLException {
+    public List<Student> studentLogin() throws SQLException {
         return bll.studentLogin();
     }
     

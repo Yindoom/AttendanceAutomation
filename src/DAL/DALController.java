@@ -45,25 +45,26 @@ public class DALController {
         }
     }
 
-    public Student studentLogin() throws SQLException {
-        Student student
-                = new Student();
+    public List<Student> studentLogin() throws SQLException {
+        List<Student> studentLogin
+                = new ArrayList();
         
         try (Connection con = cm.getConnection()){
             PreparedStatement stmt
                     = con.prepareStatement("SELECT * FROM STUDENT");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
+                Student student = new Student();
                 student.setId(rs.getInt("ID"));
                 student.setUsername(rs.getString("Username"));
                 student.setPassword(rs.getString("Password"));
                 student.setName(rs.getString("fName"));
                 student.setLname(rs.getString("lName"));
                 
-                return student;
+                studentLogin.add(student);
             }
         }
-        return student;
+        return studentLogin;
     }
     
 }
