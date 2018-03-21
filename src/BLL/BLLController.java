@@ -6,6 +6,7 @@
 package BLL;
 
 import BE.Attendance;
+import BE.Student;
 import DAL.DALController;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -20,6 +21,10 @@ public class BLLController {
     public void attend(LocalDate now, int id) throws SQLException {
         java.sql.Date sqlDate = java.sql.Date.valueOf(now);
         dal.attend(sqlDate, id);
+    }
+
+    public Student studentLogin() throws SQLException {
+        return dal.studentLogin();
     }
     
 }

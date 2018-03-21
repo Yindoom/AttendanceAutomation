@@ -5,6 +5,7 @@
  */
 package DAL;
 
+import BE.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,6 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,6 +43,27 @@ public class DALController {
             if(affected<1)
                 throw new SQLException("Eat a dick");
         }
+    }
+
+    public Student studentLogin() throws SQLException {
+        Student student
+                = new Student();
+        
+        try (Connection con = cm.getConnection()){
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM STUDENT");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                student.setId(rs.getInt("ID"));
+                student.setUsername(rs.getString("Username"));
+                student.setPassword(rs.getString("Password"));
+                student.setName(rs.getString("fName"));
+                student.setLname(rs.getString("lName"));
+                
+                return student;
+            }
+        }
+        return student;
     }
     
 }
