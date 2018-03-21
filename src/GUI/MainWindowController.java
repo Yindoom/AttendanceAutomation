@@ -51,13 +51,21 @@ public class MainWindowController implements Initializable {
                 openStudent();
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c56c5dbe1f7c251676b28a95fce533c8ff282bd
         for (Teacher teacher : model.teacherLogin()) {
             if (username.getText().equals(teacher.getUsername())) {
                 openTeacher();
             }
+<<<<<<< HEAD
 
         }
 
+=======
+        }
+>>>>>>> 1c56c5dbe1f7c251676b28a95fce533c8ff282bd
     }
 
     private void openStudent() throws IOException {
