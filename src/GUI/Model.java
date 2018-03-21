@@ -5,9 +5,11 @@
  */
 package GUI;
 
+import BE.Attendance;
 import BLL.BLLController;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -20,4 +22,7 @@ public class Model {
         bll.attend(now, id);
     }
     
+    public List<Attendance> getStudentAttendance()  {
+        return bll.getStudentAttendance();
+    }
 }
