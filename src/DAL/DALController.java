@@ -8,6 +8,7 @@ package DAL;
 import BE.Attendance;
 import BLL.BLLController;
 import BE.Student;
+import BE.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -75,6 +76,28 @@ public class DALController {
         return studentLogin;
     }
     
+    public List<Teacher> teacherLogin() throws SQLException {
+        List<Teacher> teacherLogin
+                = new ArrayList();
+        
+        try (Connection con = cm.getConnection()){
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM STUDENT");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Teacher teacher = new Teacher();
+                teacher.setId(rs.getInt("ID"));
+                teacher.setUsername(rs.getString("Username"));
+                teacher.setPassword(rs.getString("Password"));
+                teacher.setfName(rs.getString("fName"));
+                teacher.setlName(rs.getString("lName"));
+                
+                teacherLogin.add(teacher);
+            }
+        }
+        return teacherLogin;
+    }
+    
     public List<Attendance> getStudentAttendance()  {
         List<Attendance> attendances
                 = new ArrayList();
@@ -98,4 +121,6 @@ public class DALController {
         }
         return attendances;
     }
+    
+    
 }

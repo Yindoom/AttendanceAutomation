@@ -7,10 +7,12 @@ package GUI;
 
 import BE.Attendance;
 import BE.Student;
+import BE.Teacher;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,12 +46,13 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    private void loginButton(ActionEvent event) throws IOException {
-        for (Student student : model.studentLogin()) { 
+    private void loginButton(ActionEvent event) throws IOException, SQLException {
+        for (Student student : model.studentLogin() || 
+                Teacher teacher : model.teacherLogin()) { 
         if(username.getText() == 
             openStudent();
-        else if(username.getText().equals("teacher"))
-        openTeacher();
+        else if(username.getText() ==
+        openTeacher());
             
         }
             

@@ -7,6 +7,7 @@ package GUI;
 
 import BE.Attendance;
 import BE.Student;
+import BE.Teacher;
 import BLL.BLLController;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -25,6 +26,10 @@ public class Model {
 
     public List<Student> studentLogin() throws SQLException {
         return bll.studentLogin();
+    }
+    
+    public List<Teacher> teacherLogin() throws SQLException{
+        return bll.teacherLogin();
     }
     
     public List<Attendance> getStudentAttendance()  {
