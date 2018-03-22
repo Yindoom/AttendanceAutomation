@@ -96,8 +96,8 @@ public class MainWindowController implements Initializable {
         String lname = teacher.getlName();
         int id = teacher.getId();
 
-        tvc.setLabels(name, lname, id);
         tvc.setModel(model);
+        tvc.setLabels(name, lname, id);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

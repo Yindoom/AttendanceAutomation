@@ -12,6 +12,7 @@ import BLL.BLLController;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -35,4 +36,8 @@ public class Model {
     public List<Attendance> getStudentAttendance(int id)  {
         return bll.getStudentAttendance(id);
     }
+
+    public List<Student> getTeacherStudents(int id) {
+        return bll.getTeacherStudents(id);
+    }   
 }

@@ -9,7 +9,9 @@ import BE.Student;
 import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +44,7 @@ public class TeacherViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
     }
 
     @FXML
@@ -52,6 +55,7 @@ public class TeacherViewController implements Initializable {
 
         Parent root = fxLoader.load();
         TeachersStudentViewController stc = fxLoader.getController();
+        stc.setModel(model);
 
         Student selectedAccount
                 = lstStudents.getSelectionModel().getSelectedItem();
@@ -67,9 +71,14 @@ public class TeacherViewController implements Initializable {
         fname.setText(name);
         lname.setText(lName);
         this.id = id;
+        lstStudents.getItems().addAll(model.getTeacherStudents(id));
     }
 
-    void setModel(Model model) {
+    public void setModel(Model model) {
         this.model = model;
+    }
+    
+    public List<Student> getTeacherStudents(int id) {
+        return model.getTeacherStudents(id);
     }
 }

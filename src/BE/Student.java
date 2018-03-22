@@ -25,8 +25,6 @@ public class Student {
     @Override
     public String toString() {
         return id.getValue() + "\t"
-                + username.getValue() + "\t"
-                + password.getValue() + "\t"
                 + fname.getValue() + "\t"
                 + lname.getValue();
     }

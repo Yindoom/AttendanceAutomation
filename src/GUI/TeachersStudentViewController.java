@@ -5,15 +5,18 @@
  */
 package GUI;
 
+import BE.Attendance;
 import BE.Student;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 public class TeachersStudentViewController implements Initializable {
     
-    private JFXListView<Student> lstAttendence;
+    private JFXListView<Attendance> lstAttendence;
+    Model model;
 
     /**
      * Initializes the controller class.
@@ -24,9 +27,14 @@ public class TeachersStudentViewController implements Initializable {
     }    
 
     public void setAccount(Student selectedAccount) {
-        lstAttendence.getItems().add(selectedAccount);
+        List<Attendance> studentAttendance = model.getStudentAttendance(selectedAccount.getId());
+        lstAttendence.getItems().addAll(studentAttendance);
         //TODO
         
 }
+
+    void setModel(Model model) {
+        this.model = model;
+    }
     
 }
