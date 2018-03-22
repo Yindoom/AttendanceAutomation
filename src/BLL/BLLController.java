@@ -11,11 +11,8 @@ import BE.Teacher;
 import DAL.DALController;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -27,7 +24,7 @@ public class BLLController {
     public void attend(LocalDate now, int id) {
         boolean attendanceRegistered = false;
         
-        for (Attendance attendance : getStudentAttendance()) {
+        for (Attendance attendance : getStudentAttendance(id)) {
             if(now.equals(attendance.getDate()))    {
                 attendanceRegistered = true;
                 break;
@@ -45,9 +42,9 @@ public class BLLController {
         }
     }
     
-    public List<Attendance> getStudentAttendance()  {
+    public List<Attendance> getStudentAttendance(int id)  {
         List<Attendance> attendance = new ArrayList();
-        for (Attendance attend : dal.getStudentAttendance()) {
+        for (Attendance attend : dal.getStudentAttendance(id)) {
             java.sql.Date sqlDate = attend.getSqlDate();
             attend.setDate(sqlToLocal(sqlDate));
             attendance.add(attend);

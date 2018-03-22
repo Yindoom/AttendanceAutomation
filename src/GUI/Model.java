@@ -32,7 +32,7 @@ public class Model {
         return bll.teacherLogin();
     }
     
-    public List<Attendance> getStudentAttendance()  {
-        return bll.getStudentAttendance();
+    public List<Attendance> getStudentAttendance(int id)  {
+        return bll.getStudentAttendance(id);
     }
 }

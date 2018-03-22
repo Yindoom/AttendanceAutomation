@@ -104,13 +104,15 @@ public class DALController {
         return teacherLogin;
     }
     
-    public List<Attendance> getStudentAttendance()  {
+    public List<Attendance> getStudentAttendance(int id)  {
         List<Attendance> attendances
                 = new ArrayList();
     
      try (Connection con = cm.getConnection()) {
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM Attendance");
+                    = con.prepareStatement("SELECT * FROM Attendance "
+                    + "WHERE SId=?");
+            stmt.setInt(1, id);   
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Attendance attendance = new Attendance();

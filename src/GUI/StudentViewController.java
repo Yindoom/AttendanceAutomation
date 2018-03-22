@@ -57,7 +57,6 @@ public class StudentViewController implements Initializable {
 
     @FXML
     private void clickAttend(ActionEvent event) throws SQLException {
-        studentId = 1;
         LocalDate date = LocalDate.now();
         model.attend(date, studentId);
         System.out.println("attended");

@@ -41,9 +41,6 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for (Attendance attendance : model.getStudentAttendance()) {
-            System.out.println(attendance.getDate());
-        }
 
     }
 
