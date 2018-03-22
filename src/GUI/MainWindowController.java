@@ -36,29 +36,29 @@ public class MainWindowController implements Initializable {
     @FXML
     private JFXTextField username;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         for (Attendance attendance : model.getStudentAttendance()) {
-            System.out.println(attendance.getDate());   
+            System.out.println(attendance.getDate());
         }
-        
+
     }
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException, SQLException {
-        for (Student student : model.studentLogin() || 
-                Teacher teacher : model.teacherLogin()) { 
-        if(username.getText() == 
-            openStudent();
-        else if(username.getText() ==
-        openTeacher());
-            
+        for (Student student : model.studentLogin()) {
+            if (username.getText().equals(student.getUsername())) {
+                openStudent();
+            }
         }
-            
-        
+
+        for (Teacher teacher : model.teacherLogin()) {
+            if (username.getText().equals(teacher.getUsername())) {
+                openTeacher();
+            }
+        }
     }
-    
+
     private void openStudent() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
@@ -75,7 +75,7 @@ public class MainWindowController implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+
     }
 
     private void openTeacher() throws IOException {
@@ -93,5 +93,6 @@ public class MainWindowController implements Initializable {
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.show();}
+        primaryStage.show();
+    }
 }

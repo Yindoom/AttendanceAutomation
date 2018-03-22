@@ -41,8 +41,6 @@ public class TeacherViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Student student1 = new Student("", "", "nicolai", "work", "CS2017");
-        lstStudents.getItems().add(student1);
     }
 
     @FXML
