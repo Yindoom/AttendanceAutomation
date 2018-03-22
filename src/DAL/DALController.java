@@ -6,12 +6,9 @@
 package DAL;
 
 import BE.Attendance;
-import BLL.BLLController;
 import BE.Student;
 import BE.Teacher;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,6 +70,11 @@ public class DALController {
                 studentLogin.add(student);
             }
         }
+        
+            catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+                }
         return studentLogin;
     }
     
@@ -95,6 +97,10 @@ public class DALController {
                 teacherLogin.add(teacher);
             }
         }
+                catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+                }
         return teacherLogin;
     }
     

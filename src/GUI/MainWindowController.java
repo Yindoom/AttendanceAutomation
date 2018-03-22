@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,6 +36,8 @@ public class MainWindowController implements Initializable {
     private JFXPasswordField password;
     @FXML
     private JFXTextField username;
+    @FXML
+    private Label warningLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,30 +49,36 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException, SQLException {
+        boolean loggedIn = false;
         for (Student student : model.studentLogin()) {
-            if (username.getText().equals(student.getUsername())) {
-                openStudent();
+            if (username.getText().equals(student.getUsername()) && password.getText().equals(student.getPassword())) {
+                loggedIn = true;
+                openStudent(student);
             }
         }
+        if(!loggedIn)
         for (Teacher teacher : model.teacherLogin()) {
-            if (username.getText().equals(teacher.getUsername())) {
-                openTeacher();
+            if (username.getText().equals(teacher.getUsername()) && password.getText().equals(teacher.getPassword())) {
+                loggedIn = true;
+                openTeacher(teacher);
             }
 
         }
+        if(!loggedIn)
+            warningLabel.setText("Username or Password is wrong");
 
     }
 
-    private void openStudent() throws IOException {
+    private void openStudent(Student student) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
 
         Parent root = fxLoader.load();
         StudentViewController stc = fxLoader.getController();
-        String name = "fuck";
-        String lName = "you";
-        int id = 1;
+        String name = student.getName();
+        String lName = student.getLname();
+        int id = student.getId();
         stc.setLabels(name, lName, id);
         stc.setModel(model);
 
@@ -79,17 +88,18 @@ public class MainWindowController implements Initializable {
 
     }
 
-    private void openTeacher() throws IOException {
+    private void openTeacher(Teacher teacher) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("TeacherView.fxml"));
 
         Parent root = fxLoader.load();
         TeacherViewController tvc = fxLoader.getController();
-        String name = "fuck";
-        String lname = "you";
+        String name = teacher.getfName();
+        String lname = teacher.getlName();
+        int id = teacher.getId();
 
-        tvc.setLabels(name, lname);
+        tvc.setLabels(name, lname, id);
         tvc.setModel(model);
 
         Scene scene = new Scene(root);

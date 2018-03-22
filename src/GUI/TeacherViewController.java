@@ -35,6 +35,7 @@ public class TeacherViewController implements Initializable {
     private Label lname;
     @FXML
     private JFXListView<Student> lstStudents;
+    int id;
 
     /**
      * Initializes the controller class.
@@ -62,9 +63,10 @@ public class TeacherViewController implements Initializable {
         //TODO
     }
 
-    public void setLabels(String name, String lName) {
+    public void setLabels(String name, String lName, int id) {
         fname.setText(name);
         lname.setText(lName);
+        this.id = id;
     }
 
     void setModel(Model model) {

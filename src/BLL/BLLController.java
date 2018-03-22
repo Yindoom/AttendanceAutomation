@@ -24,7 +24,7 @@ import javafx.collections.ObservableList;
 public class BLLController {
     DALController dal = new DALController();
 
-    public void attend(LocalDate now, int id) throws SQLException {
+    public void attend(LocalDate now, int id) {
         boolean attendanceRegistered = false;
         
         for (Attendance attendance : getStudentAttendance()) {
@@ -59,7 +59,7 @@ public class BLLController {
         return dal.studentLogin();
     }
     
-    public List<Teacher> teacherLogin() throws SQLException{
+    public List<Teacher> teacherLogin() throws SQLException {
         return dal.teacherLogin();
     }
     
