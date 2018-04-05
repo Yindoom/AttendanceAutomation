@@ -40,4 +40,8 @@ public class Model {
     public List<Student> getTeacherStudents(int id) {
         return bll.getTeacherStudents(id);
     }   
+
+    public void makeDateReference() {
+        bll.makeDateReference();
+    }
 }

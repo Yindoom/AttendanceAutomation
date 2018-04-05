@@ -23,6 +23,8 @@ public class CS2018First_Assigment extends Application {
         
         Scene scene = new Scene(root);
         
+        MainWindowController mwc = new MainWindowController();
+        
         stage.setScene(scene);
         stage.show();
     }

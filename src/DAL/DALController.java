@@ -6,13 +6,16 @@
 package DAL;
 
 import BE.Attendance;
+import BE.DateReference;
 import BE.Student;
 import BE.Teacher;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,7 +45,7 @@ public class DALController {
 
             int affected = pstmt.executeUpdate();
             if (affected < 1) {
-                throw new SQLException("fuck you");
+                throw new SQLException("Attendance could not be registered");
             }
 
         } catch (SQLException ex) {
@@ -153,4 +156,46 @@ public class DALController {
         return students;
     }
 
+    public List<DateReference> getDateReferences() {
+        List<DateReference> dates
+                = new ArrayList();
+
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM Date_References");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                DateReference date = new DateReference();
+                date.setDate(rs.getDate("date").toLocalDate());
+
+                dates.add(date);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        return dates;
+    }
+
+    public void makeDateReference(LocalDate now) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "INSERT INTO Date_References"
+                    + "(date) "
+                    + "VALUES(?)";
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setDate(1, java.sql.Date.valueOf(now));
+
+            int affected = pstmt.executeUpdate();
+            if (affected < 1) {
+                throw new SQLException("Attendance could not be registered");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DALController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
 }

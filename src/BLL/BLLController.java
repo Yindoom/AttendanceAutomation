@@ -6,10 +6,12 @@
 package BLL;
 
 import BE.Attendance;
+import BE.DateReference;
 import BE.Student;
 import BE.Teacher;
 import DAL.DALController;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,5 +78,25 @@ public class BLLController {
     public List<Student> getTeacherStudents(int id) {
         return dal.getTeacherStudents(id);
     }
+    
+    public List<DateReference> getDateReferences() {
+        return dal.getDateReferences();
+    }
 
+    public void makeDateReference() {
+        boolean needsReference = false;
+        for (DateReference dateReference : dal.getDateReferences()) {
+            if(!dateReference.getDate().equals(LocalDate.now())) {
+                needsReference = true;
+            } 
+            else {
+                needsReference = false;
+                break;
+            }
+        }
+        DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
+        if(needsReference)
+            if(dayOfWeek.equals("SATURDAY") || dayOfWeek.equals("SUNDAY"))
+        dal.makeDateReference(LocalDate.now());
+    }
 }

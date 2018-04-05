@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -31,6 +32,7 @@ import javafx.stage.Stage;
  */
 public class MainWindowController implements Initializable {
 
+    Stage login;
     Model model = new Model();
     @FXML
     private JFXPasswordField password;
@@ -46,11 +48,13 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void loginButton(ActionEvent event) throws IOException, SQLException {
+        model.makeDateReference();
         boolean loggedIn = false;
         for (Student student : model.studentLogin()) {
             if (username.getText().equals(student.getUsername()) && password.getText().equals(student.getPassword())) {
                 loggedIn = true;
                 openStudent(student);
+                ((Node)event.getSource()).getScene().getWindow().hide();
             }
         }
         if(!loggedIn)
@@ -58,6 +62,7 @@ public class MainWindowController implements Initializable {
             if (username.getText().equals(teacher.getUsername()) && password.getText().equals(teacher.getPassword())) {
                 loggedIn = true;
                 openTeacher(teacher);
+                ((Node)event.getSource()).getScene().getWindow().hide();
             }
 
         }
@@ -78,11 +83,11 @@ public class MainWindowController implements Initializable {
         int id = student.getId();
         stc.setLabels(name, lName, id);
         stc.setModel(model);
+        
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     private void openTeacher(Teacher teacher) throws IOException {
