@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,6 +39,10 @@ public class TeacherViewController implements Initializable {
     @FXML
     private JFXListView<Student> lstStudents;
     int id;
+    @FXML
+    private DatePicker dateFrom;
+    @FXML
+    private DatePicker dateTo;
 
     /**
      * Initializes the controller class.

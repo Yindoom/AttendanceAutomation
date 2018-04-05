@@ -15,8 +15,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,8 +23,11 @@ import javafx.collections.ObservableList;
 public class BLLController {
 
     DALController dal = new DALController();
+    
+    DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
 
     public void attend(LocalDate now, int id) {
+        if(dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
         boolean attendanceRegistered = false;
 
         for (Attendance attendance : getStudentAttendance(id)) {
@@ -44,6 +45,7 @@ public class BLLController {
             attend.setSqlDate(sqlDate);
             attend.setPresent(true);
             dal.attend(attend);
+            }
         }
     }
 
@@ -94,9 +96,11 @@ public class BLLController {
                 break;
             }
         }
-        DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
+        
         if(needsReference)
-            if(dayOfWeek.equals("SATURDAY") || dayOfWeek.equals("SUNDAY"))
-        dal.makeDateReference(LocalDate.now());
+            if(dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY))
+                return;
+            else 
+            dal.makeDateReference(LocalDate.now());
     }
 }
