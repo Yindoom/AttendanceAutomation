@@ -15,6 +15,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -24,27 +26,30 @@ public class BLLController {
 
     DALController dal = new DALController();
     
+    private final ObservableList<Attendance> aList
+            = FXCollections.observableArrayList();
+
     DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
 
     public void attend(LocalDate now, int id) {
-        if(dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
-        boolean attendanceRegistered = false;
+        if (dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
+            boolean attendanceRegistered = false;
 
-        for (Attendance attendance : getStudentAttendance(id)) {
-            if (now.equals(attendance.getDate())) {
-                attendanceRegistered = true;
-                break;
+            for (Attendance attendance : getStudentAttendance(id)) {
+                if (now.equals(attendance.getDate())) {
+                    attendanceRegistered = true;
+                    break;
+                }
             }
-        }
-        if (attendanceRegistered != true) {
-            java.sql.Date sqlDate = localToSql(now);
+            if (attendanceRegistered != true) {
+                java.sql.Date sqlDate = localToSql(now);
 
-            Attendance attend = new Attendance();
-            attend.setStudentId(id);
-            attend.setDate(now);
-            attend.setSqlDate(sqlDate);
-            attend.setPresent(true);
-            dal.attend(attend);
+                Attendance attend = new Attendance();
+                attend.setStudentId(id);
+                attend.setDate(now);
+                attend.setSqlDate(sqlDate);
+                attend.setPresent(true);
+                dal.attend(attend);
             }
         }
     }
@@ -78,9 +83,15 @@ public class BLLController {
     }
 
     public List<Student> getTeacherStudents(int id) {
-        return dal.getTeacherStudents(id);
+        List<Student> students = new ArrayList();
+        for (Student teacherStudent : dal.getTeacherStudents(id)) {
+            teacherStudent.setAbsencePercentage(calculatePercentage(teacherStudent.getId()));
+            students.add(teacherStudent);
+        }
+        System.out.println(students);
+        return students;
     }
-    
+
     public List<DateReference> getDateReferences() {
         return dal.getDateReferences();
     }
@@ -88,19 +99,53 @@ public class BLLController {
     public void makeDateReference() {
         boolean needsReference = false;
         for (DateReference dateReference : dal.getDateReferences()) {
-            if(!dateReference.getDate().equals(LocalDate.now())) {
+            if (!dateReference.getDate().equals(LocalDate.now())) {
                 needsReference = true;
-            } 
-            else {
+            } else {
                 needsReference = false;
                 break;
             }
         }
-        
-        if(needsReference)
-            if(dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY))
+
+        if (needsReference) {
+            if (dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
                 return;
-            else 
-            dal.makeDateReference(LocalDate.now());
+            } else {
+                dal.makeDateReference(LocalDate.now());
+            }
+        }
+    }
+
+    private double calculatePercentage(int id) {
+        double dateReference = dal.getDateReferences().size();
+        double attendance = dal.getStudentAttendance(id).size();
+        double percentage = attendance / dateReference * 100;
+
+        return percentage;
+    }
+
+    public void setAllAttendance(int studentId) {
+        boolean needsNewAttendance = true;
+       
+        for (DateReference dateReference : dal.getDateReferences()) {
+            for (Attendance attendance : dal.getStudentAttendance(studentId)) {
+                if (dateReference.getDate().equals(attendance.getDate())) {
+                    needsNewAttendance = false;
+                    aList.add(attendance);
+                }
+            }
+            if (needsNewAttendance) {
+                Attendance newAttend = new Attendance();
+
+                newAttend.setStudentId(studentId);
+                newAttend.setPresent(false);
+                newAttend.setDate(dateReference.getDate());
+                aList.add(newAttend);
+            }
+        }
+    }
+
+    public ObservableList<Attendance> getAllAttendance() {
+        return aList;
     }
 }

@@ -59,8 +59,6 @@ public class StudentViewController implements Initializable {
     private void clickAttend(ActionEvent event) throws SQLException {
         LocalDate date = LocalDate.now();
         model.attend(date, studentId);
-        System.out.println("attended");
-        //TODO
     }
 
     @FXML
@@ -68,13 +66,16 @@ public class StudentViewController implements Initializable {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         Parent root = FXMLLoader.load(getClass().getResource("StudentAttendence.fxml"));
+        
+        StudentAttendenceController sac = new StudentAttendenceController();
+        sac.setModel(studentId, model);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    void setModel(Model model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 }

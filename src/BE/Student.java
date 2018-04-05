@@ -5,7 +5,9 @@
  */
 package BE;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -21,12 +23,27 @@ public class Student {
     private final StringProperty password = new SimpleStringProperty();
     private final StringProperty fname = new SimpleStringProperty();
     private final StringProperty lname = new SimpleStringProperty();
+    private final DoubleProperty absencePercentage = new SimpleDoubleProperty();
+
+    public double getAbsencePercentage() {
+        return absencePercentage.get();
+    }
+
+    public void setAbsencePercentage(double value) {
+        absencePercentage.set(value);
+    }
+
+    public DoubleProperty absencePercentageProperty() {
+        return absencePercentage;
+    }
+    
 
     @Override
     public String toString() {
-        return id.getValue() + "\t"
-                + fname.getValue() + "\t"
-                + lname.getValue();
+        return id.getValue() + " "
+                + fname.getValue() + " "
+                + lname.getValue() +" "
+                + absencePercentage.getValue();
     }
 
     public Student() {

@@ -44,4 +44,12 @@ public class Model {
     public void makeDateReference() {
         bll.makeDateReference();
     }
+
+    public void setAllAttendance(int studentId) {
+        bll.setAllAttendance(studentId);
+    }
+    
+    public ObservableList<Attendance> getAllAttendance() {
+        return bll.getAllAttendance();
+    }
 }

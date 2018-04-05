@@ -8,6 +8,7 @@ package GUI;
 import BE.Attendance;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,9 @@ import javafx.scene.control.Label;
  */
 public class StudentAttendenceController implements Initializable {
     
+    Model model;
+    int studentId;
+    
     @FXML
     private Label presentLabel;
     @FXML
@@ -32,8 +36,7 @@ public class StudentAttendenceController implements Initializable {
     private Label lname;
     @FXML
     private Label classes;
-    @FXML
-    private JFXListView<Attendance> lstAttendence;
+    private JFXListView<Attendance> lstAttendance;
     
     private String prompt = "Set absence";
 
@@ -51,16 +54,24 @@ public class StudentAttendenceController implements Initializable {
     private void chooseAbsence(ActionEvent event) {
         boolean present;
         if(absenceBox.getValue() != null) {
-        Attendance selectedDay = lstAttendence.getSelectionModel().getSelectedItem();
+        Attendance selectedDay = lstAttendance.getSelectionModel().getSelectedItem();
         if(absenceBox.getValue() == "Present")
             present = true;
         else
             present = false;
         selectedDay.setPresent(present);
-        lstAttendence.refresh();
+        lstAttendance.refresh();
         System.out.println(absenceBox.getValue());
         }
         absenceBox.getSelectionModel().clearSelection();
+    }
+
+    public void setModel(int studentId, Model model) {
+        this.model = model;
+        this.studentId = studentId;
+        model.setAllAttendance(studentId);
+        lstAttendance.setItems(model.getAllAttendance());
+
     }
 
 }
