@@ -32,7 +32,7 @@ public class BLLController {
     DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
 
     public void attend(LocalDate now, int id) {
-        if (dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
+        if (!dayOfWeek.equals(java.time.DayOfWeek.SATURDAY) || !dayOfWeek.equals(java.time.DayOfWeek.SUNDAY)) {
             boolean attendanceRegistered = false;
 
             for (Attendance attendance : getStudentAttendance(id)) {
@@ -125,9 +125,11 @@ public class BLLController {
     }
 
     public void setAllAttendance(int studentId) {
+        aList.clear();
         boolean needsNewAttendance = true;
        
         for (DateReference dateReference : dal.getDateReferences()) {
+            needsNewAttendance = true;
             for (Attendance attendance : dal.getStudentAttendance(studentId)) {
                 if (dateReference.getDate().equals(attendance.getDate())) {
                     needsNewAttendance = false;
@@ -147,5 +149,9 @@ public class BLLController {
 
     public ObservableList<Attendance> getAllAttendance() {
         return aList;
+    }
+
+    public void setPercentage(Student student) {
+        student.setAbsencePercentage(calculatePercentage(student.getId()));
     }
 }

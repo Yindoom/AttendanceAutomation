@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.Student;
 import com.jfoenix.controls.JFXButton;
 import com.sun.deploy.util.FXLoader;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import javafx.stage.Stage;
 public class StudentViewController implements Initializable {
     
     Model model;
+    Student student;
     int studentId;
     
     @FXML
@@ -50,10 +52,12 @@ public class StudentViewController implements Initializable {
     }
 
 
-    public void setLabels(String name, String lName, int id) {
-        fname.setText(name);
-        lname.setText(lName);
-        this.studentId = id;
+    public void setLabels(Student student) {
+        this.student = student;
+        fname.setText(student.getName());
+        lname.setText(student.getLname());
+        this.studentId = student.getId();
+        
     }
 
     @FXML
@@ -70,7 +74,7 @@ public class StudentViewController implements Initializable {
         Parent root = fxLoader.load();
         
         StudentAttendenceController sac = fxLoader.getController();
-        sac.setModel(studentId, model);
+        sac.setModel(student, model);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

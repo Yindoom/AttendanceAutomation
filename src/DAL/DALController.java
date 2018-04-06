@@ -119,6 +119,7 @@ public class DALController {
                 attendance.setPresent(rs.getBoolean("Present"));
                 attendance.setStudentId(rs.getInt("SId"));
                 attendance.setSqlDate(rs.getDate("Date"));
+                attendance.setDate((rs.getDate("Date").toLocalDate()));
 
                 attendances.add(attendance);
             }

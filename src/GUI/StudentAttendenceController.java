@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.Attendance;
+import BE.Student;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ import javafx.scene.control.ListView;
 public class StudentAttendenceController implements Initializable {
     
     Model model;
+    Student student;
     int studentId;
     
     @FXML
@@ -41,8 +43,6 @@ public class StudentAttendenceController implements Initializable {
     private JFXListView<Attendance> lstAttendance;
     
     private String prompt = "Set absence";
-    @FXML
-    private ListView<Attendance> lstAttend;
 
     /**
      * Initializes the controller class.
@@ -70,12 +70,13 @@ public class StudentAttendenceController implements Initializable {
         absenceBox.getSelectionModel().clearSelection();
     }
 
-    public void setModel(int studentId, Model model) {
+    public void setModel(Student student, Model model) {
+        model.setPercentage(student);
         this.model = model;
-        this.studentId = studentId;
+        this.studentId = student.getId();
         model.setAllAttendance(studentId);
         lstAttendance.setItems(model.getAllAttendance());
-
+        presentLabel.setText(""+student.getAbsencePercentage());
     }
 
 }

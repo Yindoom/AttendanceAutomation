@@ -81,7 +81,7 @@ public class MainWindowController implements Initializable {
         String name = student.getName();
         String lName = student.getLname();
         int id = student.getId();
-        stc.setLabels(name, lName, id);
+        stc.setLabels(student);
         stc.setModel(model);
         
 

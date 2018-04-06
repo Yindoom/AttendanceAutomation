@@ -52,4 +52,8 @@ public class Model {
     public ObservableList<Attendance> getAllAttendance() {
         return bll.getAllAttendance();
     }
+
+    public void setPercentage(Student student) {
+        bll.setPercentage(student);
+    }
 }
