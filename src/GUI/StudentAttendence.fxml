@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="427.0" prefWidth="429.0" styleClass="root" stylesheets="@newCascadeStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StudentAttendenceController">
@@ -14,5 +15,6 @@
       <Label fx:id="fname" layoutX="14.0" layoutY="14.0" styleClass="name" text="Fname" />
       <Label fx:id="lname" layoutX="73.0" layoutY="14.0" styleClass="name" text="Lname" />
       <Label fx:id="classes" layoutX="138.0" layoutY="14.0" styleClass="name" text="Class" />
+      <ListView fx:id="lstAttend" layoutX="215.0" layoutY="164.0" prefHeight="200.0" prefWidth="200.0" styleClass="listView" />
    </children>
 </AnchorPane>

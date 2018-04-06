@@ -6,6 +6,7 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
+import com.sun.deploy.util.FXLoader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -65,9 +66,10 @@ public class StudentViewController implements Initializable {
     private void clickAttendence(ActionEvent event) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
-        Parent root = FXMLLoader.load(getClass().getResource("StudentAttendence.fxml"));
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("StudentAttendence.fxml"));
+        Parent root = fxLoader.load();
         
-        StudentAttendenceController sac = new StudentAttendenceController();
+        StudentAttendenceController sac = fxLoader.getController();
         sac.setModel(studentId, model);
 
         Scene scene = new Scene(root);

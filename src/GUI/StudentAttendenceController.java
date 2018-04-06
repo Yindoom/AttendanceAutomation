@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
@@ -36,9 +37,12 @@ public class StudentAttendenceController implements Initializable {
     private Label lname;
     @FXML
     private Label classes;
+    @FXML
     private JFXListView<Attendance> lstAttendance;
     
     private String prompt = "Set absence";
+    @FXML
+    private ListView<Attendance> lstAttend;
 
     /**
      * Initializes the controller class.
